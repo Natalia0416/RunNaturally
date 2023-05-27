@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "316023525845",
+    "project_id": "runaturally",
+    "storage_bucket": "runaturally.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316023525845:android:5c8f25976fb2a73b41ed5c",
+        "android_client_info": {
+          "package_name": "com.example.runnaturally"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "316023525845-3k6q7g1uor0737hbgi768047mjckujoe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLTFfx4ruv-3C4Kmpph8ZoYUYYgBrF0tI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "316023525845-3k6q7g1uor0737hbgi768047mjckujoe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

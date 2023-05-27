@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">RunNaturally</string>
+
+    <string name="invitation">Los récords están para ser superados</string>
+    <string name="email">Email</string>
+    <string name="password">Contraseña</string>
+    <string name="forgotPassword">Olvidaste tu contraseña</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="resetPassword">Enviar Contraseña</string>
+    <string name="acept">He leído y aceptado los</string>
+    <string name="terms">términos y condiciones</string>
+
+    <string name="empty_email">Introduce tu email </string>
+    <string name="invalid_email">El email del usuario es incorrecto</string>
+
+    <string name="google"> Continuar con Google</string>
+    <string name="facebook"> Continuar con Facebook</string>
+
+    <string name="bar_title_terms">Terminos y Condiciones</string>
+    <string name="terms1">
+        This document (hereinafter, the "Agreement") establishes the terms and conditions of Robert Half Internacional Empresa de Servicios Transitorios Limitada, located at Avenida Isidora Goyenechea 2800 Piso 15. Torre Titanium 7550-647 Las Condes, which shall apply to the
+        Users access and use of this web page (the "Web Site"). Please read this Agreement carefully. By accessing, viewing or using the Web Site, Users ("you", "you", "User", or "user") agree to be bound by the terms and conditions set forth in this Agreement. If you do not
+        agree to be bound by these terms and conditions, you may not access or use the Web Site.
+    </string>
+    <string name="terms2">
+        Robert Half International Temporary Services Company Limited and its respective affiliates (collectively, "RH") reserve the right to update this Agreement from time to time. Accordingly, we recommend that you periodically review any changes to this Agreement.
+    </string>
+    <string name="terms3">
+        This Web Site is intended exclusively for residents. Users resident or domiciled in another country who wish to access and use the Web Site do so at their own risk and responsibility, and must ensure that such access and/or use complies with the applicable laws of their country.
+    </string>
+
+</resources>
