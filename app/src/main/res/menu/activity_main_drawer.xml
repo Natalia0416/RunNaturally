@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item android:id="@+id/nav_item_main"
+            android:icon="@drawable/camino"
+            android:title="@string/menu_running"
+            />
+        <item android:id="@+id/nav_item_record"
+            android:icon="@drawable/gallery"
+            android:title="@string/menu_record"
+            />
+        <item android:id="@+id/nav_item_premium"
+            android:icon="@drawable/premium"
+            android:title="@string/menu_becamepremium"
+            />
+    </group>
+
+    <item android:title="Cuenta">
+        <menu>
+            <item android:id="@+id/nav_item_clearpreferences"
+                android:icon="@drawable/restablecer"
+                android:title="@string/menu_clearpreferences"/>
+            <item android:id="@+id/nav_item_signout"
+                android:icon="@drawable/close"
+                android:title="@string/menu_signout"/>
+        </menu>
+    </item>
+</menu>

@@ -29,4 +29,17 @@
         This Web Site is intended exclusively for residents. Users resident or domiciled in another country who wish to access and use the Web Site do so at their own risk and responsibility, and must ensure that such access and/or use complies with the applicable laws of their country.
     </string>
 
+    <string name="bar_title">Los récords están para ser superados</string>
+
+
+    <string name="menu_running">Running</string>
+    <string name="menu_record">Historial</string>
+    <string name="menu_becamepremium">Hazte Premium</string>
+    <string name="menu_clearpreferences">Restablecer ajustes</string>
+    <string name="menu_signout">Cerrar Sesion</string>
+    <string name="menu_offercourse">...</string>
+
+
+
+
 </resources>
