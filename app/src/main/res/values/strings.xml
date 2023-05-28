@@ -42,7 +42,8 @@
     <string name="user">laura@runnat.com</string>
     <string name="nav_hi">Los récords están para ser superados</string>
 
-
+    <string name="navigation_drawer_open">Menu</string>
+    <string name="navigation_drawer_close">Cerrar</string>
 
 
 </resources>

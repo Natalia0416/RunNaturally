@@ -3,16 +3,13 @@
     <group>
         <item android:id="@+id/nav_item_main"
             android:icon="@drawable/camino"
-            android:title="@string/menu_running"
-            />
+            android:title="@string/menu_running"/>
         <item android:id="@+id/nav_item_record"
             android:icon="@drawable/gallery"
-            android:title="@string/menu_record"
-            />
+            android:title="@string/menu_record"/>
         <item android:id="@+id/nav_item_premium"
             android:icon="@drawable/premium"
-            android:title="@string/menu_becamepremium"
-            />
+            android:title="@string/menu_becamepremium" />
     </group>
 
     <item android:title="Cuenta">
