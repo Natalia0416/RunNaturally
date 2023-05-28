@@ -13,4 +13,11 @@
     <color name="maroon">#A84448</color>
     <color name="DarkSeaGreen">#A4D0A4</color>
     <color name="green">#7AA874</color>
+    <color name="RebeccaPurple">#B799FF</color>
+    <color name="SkyBlue">#E6FFFD</color>
+    <color name="LightCyan">#D2E9E9</color>
+    <color name="Purple">#8B1874</color>
+    <color name="SkyPurple">#BE5A83</color>
+    <color name="CadetBlue">#B9E9FC</color>
+    <color name="DarkTurquoise">#009FBD</color>
 </resources>
