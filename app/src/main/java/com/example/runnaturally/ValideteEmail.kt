@@ -3,7 +3,7 @@ package com.example.runnaturally
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-class ValideteEmail{
+class ValidateEmail{
     companion object{
         var pat: Pattern? = null
         var mat: Matcher? = null

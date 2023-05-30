@@ -3,15 +3,9 @@ package com.example.runnaturally
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Email
 import android.text.TextUtils
-import android.view.ActionProvider
 import android.view.View
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import com.google.firebase.auth.FirebaseAuth
@@ -31,32 +25,32 @@ class LoginActivity : AppCompatActivity() {
     private var password by Delegates.notNull<String>()
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
-    private lateinit var lvTerms: LinearLayout
+    private lateinit var lyTerms: LinearLayout
+
     private lateinit var mAuth: FirebaseAuth
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        lvTerms = findViewById(R.id.lyTerms)
-        lvTerms.visibility = View.INVISIBLE
+        lyTerms = findViewById(R.id.lyTerms)
+        lyTerms.visibility = View.INVISIBLE
 
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etPassword)
         mAuth = FirebaseAuth.getInstance()
 
         manageButtonLogin()
-        etEmail.doOnTextChanged { text, start, before, count -> manageButtonLogin() }
-        etPassword.doOnTextChanged { text, start, before, count -> manageButtonLogin() }
+        etEmail.doOnTextChanged { text, start, before, count ->  manageButtonLogin() }
+        etPassword.doOnTextChanged { text, start, before, count ->  manageButtonLogin() }
     }
 
     public override fun onStart() {
         super.onStart()
 
         val currentUser = FirebaseAuth.getInstance().currentUser
-        if(currentUser != null) goHome(currentUser.email.toString(), currentUser.providerId)
+        if (currentUser != null)  goHome(currentUser.email.toString(), currentUser.providerId)
+
     }
 
     override fun onBackPressed() {
@@ -66,24 +60,24 @@ class LoginActivity : AppCompatActivity() {
         startActivity(startMain)
     }
 
+
     private fun manageButtonLogin(){
         var tvLogin = findViewById<TextView>(R.id.tvLogin)
         email = etEmail.text.toString()
         password = etPassword.text.toString()
 
-        if (TextUtils.isEmpty(password)|| ValideteEmail.isEmail(email)==false){
+        if (TextUtils.isEmpty(password) || ValidateEmail.isEmail(email) == false){
 
-            tvLogin.setBackgroundColor(ContextCompat.getColor(this,R.color.gray))
+            tvLogin.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
             tvLogin.isEnabled = false
         }
         else{
             tvLogin.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
-            tvLogin.isEnabled = false
+            tvLogin.isEnabled = true
         }
-
     }
 
-    fun login(view: View){
+    fun login(view: View) {
         loginUser()
     }
     private fun loginUser(){
@@ -92,15 +86,16 @@ class LoginActivity : AppCompatActivity() {
 
         mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this){ task ->
-                if(task.isSuccessful) goHome(email,"email")
+                if (task.isSuccessful)  goHome(email, "email")
                 else{
-                     if (lvTerms.visibility == View.INVISIBLE) lvTerms.visibility = View.INVISIBLE
+                    if (lyTerms.visibility == View.INVISIBLE) lyTerms.visibility = View.VISIBLE
                     else{
                         var cbAcept = findViewById<CheckBox>(R.id.cbAcept)
-                         if(cbAcept.isChecked) register()
+                        if (cbAcept.isChecked) register()
                     }
                 }
             }
+
     }
 
     private fun goHome(email: String, provider: String){
@@ -108,7 +103,7 @@ class LoginActivity : AppCompatActivity() {
         useremail = email
         providerSession = provider
 
-        val intent = Intent(this,MainActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 
@@ -116,20 +111,20 @@ class LoginActivity : AppCompatActivity() {
         email = etEmail.text.toString()
         password = etPassword.text.toString()
 
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password)
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
-                if(it.isSuccessful){
+                if (it.isSuccessful){
 
-                    var dateRegister = SimpleDateFormat("dd/mm/yyyy").format(Date())
-                    var dbRegister= FirebaseFirestore.getInstance()
-                    dbRegister.collection("user").document(email).set(hashMapOf(
+                    var dateRegister = SimpleDateFormat("dd/MM/yyyy").format(Date())
+                    var dbRegister = FirebaseFirestore.getInstance()
+                    dbRegister.collection("users").document(email).set(hashMapOf(
                         "user" to email,
                         "dateRegister" to dateRegister
                     ))
 
-                    goHome(email,"email")
+                    goHome(email, "email")
                 }
-                else Toast.makeText(this,"Error, algo salio mal",Toast.LENGTH_LONG).show()
+                else Toast.makeText(this, "Error, algo ha ido mal :(", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -138,27 +133,19 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun forgotPassword(view: View){
-        //startActivity(Intent(this, ForgotPaswordActivity::class.java))
-        reserPassword()
+    fun forgotPassword(view: View) {
+        //startActivity(Intent(this, ForgotPasswordActivity::class.java))
+        resetPassword()
     }
-
-    private fun reserPassword(){
+    private fun resetPassword(){
         var e = etEmail.text.toString()
-        if(!TextUtils.isEmpty(e)){
+        if (!TextUtils.isEmpty(e)){
             mAuth.sendPasswordResetEmail(e)
                 .addOnCompleteListener { task ->
-                    if(task.isSuccessful) Toast.makeText(this,"Se envio un Email A $e", Toast.LENGTH_LONG).show()
-                    else Toast.makeText(this,"Correo no valido, por favor verificar", Toast.LENGTH_SHORT).show()
+                    if (task.isSuccessful) Toast.makeText(this, "Email Enviado a $e", Toast.LENGTH_SHORT).show()
+                    else Toast.makeText(this, "No se encontró el usuario con este correo", Toast.LENGTH_SHORT).show()
                 }
         }
-        else Toast.makeText(this,"Indica el email", Toast.LENGTH_SHORT).show()
-    }
-
-    fun callSignInGoogle(view: View){
-        signInGoogle()
-    }
-    private fun signInGoogle(){
-
+        else Toast.makeText(this, "Indica un email", Toast.LENGTH_SHORT).show()
     }
 }

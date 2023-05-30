@@ -20,4 +20,9 @@
     <color name="SkyPurple">#BE5A83</color>
     <color name="CadetBlue">#B9E9FC</color>
     <color name="DarkTurquoise">#009FBD</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="Teal">#146C94</color>
+    <color name="SteelBlue">#19A7CE</color>
+    <color name="orange">#E55807</color>
+    <color name="orange_light">#FFB84C</color>
 </resources>
