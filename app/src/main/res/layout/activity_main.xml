@@ -75,7 +75,7 @@
                             android:translationY="0dp"
                             android:translationZ="5dp"
                             app:cs_circle_color="@color/transparent"
-                            app:cs_circle_progress_color="@color/maroon"
+                            app:cs_circle_progress_color="@color/orange"
                             app:cs_circle_stroke_width="8dp"
                             app:cs_circle_style="butt"
                             app:cs_disable_pointer="true"
@@ -95,7 +95,7 @@
                             android:translationY="0dp"
                             android:translationZ="0dp"
                             app:cs_circle_color="@color/transparent"
-                            app:cs_circle_progress_color="@color/gray"
+                            app:cs_circle_progress_color="@color/SteelBlue"
                             app:cs_circle_stroke_width="8dp"
                             app:cs_circle_style="butt"
                             app:cs_disable_pointer="true"
@@ -178,7 +178,7 @@
                             app:cs_progress = "20"
                             app:cs_max = "100"
                             app:cs_circle_color  = "@color/transparent"
-                            app:cs_circle_progress_color = "@color/maroon"
+                            app:cs_circle_progress_color = "@color/orange"
                             app:cs_disable_pointer="true"/>
                         <me.tankery.lib.circularseekbar.CircularSeekBar
                             android:id="@+id/csbRecordAvgSpeed"
@@ -274,7 +274,7 @@
                             app:cs_progress = "20"
                             app:cs_max = "100"
                             app:cs_circle_color  = "@color/transparent"
-                            app:cs_circle_progress_color = "@color/maroon"
+                            app:cs_circle_progress_color = "@color/orange"
                             app:cs_disable_pointer="true"/>
                         <me.tankery.lib.circularseekbar.CircularSeekBar
                             android:id="@+id/csbCurrentMaxSpeed"
@@ -314,7 +314,7 @@
                             app:cs_progress = "100"
                             app:cs_max = "100"
                             app:cs_circle_color  = "@color/transparent"
-                            app:cs_circle_progress_color = "@color/gray"
+                            app:cs_circle_progress_color = "@color/SkyBlue"
                             app:cs_disable_pointer="true"/>
 
                         <TextView
@@ -860,8 +860,8 @@
                         android:id="@+id/swChallenges"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:thumbTint="@color/orange"
-                        android:textColorHighlight="@color/orange"
+                        android:thumbTint="@color/orange_light"
+                        android:textColorHighlight="@color/orange_light"
                         android:text="Marcar Objetivo"
                         android:textColor="@color/white"
                         android:textSize="18dp"
@@ -906,7 +906,7 @@
                                     android:text="DURACIÓN"
                                     android:textSize="18dp"
                                     android:textAlignment="center"
-                                    android:textColor="@color/CadetBlue"
+                                    android:textColor="@color/white"
                                     android:background="@color/Purple"
                                     android:onClick="showDuration"/>
                                 <TextView
@@ -1339,13 +1339,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:orientation="vertical"
-                    android:background="@color/gray">
+                    android:background="@color/white">
                     <LinearLayout
                         android:id="@+id/lyPopUpClose"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:orientation="horizontal"
-                        android:background="@color/maroon"
+                        android:background="@color/white"
                         android:gravity="right">
                         <ImageView
                             android:id="@+id/ivClosePopUp"
@@ -1385,7 +1385,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Total time: 13:24:58"
-                                android:textColor="@color/white"
+                                android:textColor="@color/black"
                                 android:textSize="12sp"
                                 android:layout_marginRight="10dp"
                                 android:textAlignment="textEnd"
@@ -1500,7 +1500,7 @@
                                     android:textSize="10sp"
                                     android:translationY="-20dp"
                                     android:textAlignment="center"
-                                    android:textColor="@color/maroon"/>
+                                    android:textColor="@color/black"/>
                             </LinearLayout>
 
                         </LinearLayout>
@@ -1526,7 +1526,7 @@
                                 android:fontFamily="sans-serif-light"
                                 android:textSize="14sp"
                                 android:textAlignment="textEnd"
-                                android:textColor="@color/gray"/>
+                                android:textColor="@color/black"/>
                             <TextView
                                 android:id="@+id/tvDurationRun"
                                 android:layout_width="wrap_content"
@@ -1537,7 +1537,7 @@
                                 android:text="00:00:00"
                                 android:textSize="35sp"
                                 android:textAlignment="textEnd"
-                                android:textColor="@color/gray"/>
+                                android:textColor="@color/black"/>
                             <LinearLayout
                                 android:id="@+id/lyChallengeDurationRun"
                                 android:layout_width="170dp"
@@ -1555,7 +1555,7 @@
                                     android:fontFamily="sans-serif-light"
                                     android:textSize="14sp"
                                     android:textAlignment="textEnd"
-                                    android:textColor="@color/gray"/>
+                                    android:textColor="@color/black"/>
                                 <TextView
                                     android:id="@+id/tvChallengeDurationRun"
                                     android:layout_width="wrap_content"
@@ -1566,7 +1566,7 @@
                                     android:text="01:00:00"
                                     android:textSize="14sp"
                                     android:textAlignment="textEnd"
-                                    android:textColor="@color/gray"/>
+                                    android:textColor="@color/black"/>
                             </LinearLayout>
                             <LinearLayout
                                 android:id="@+id/lyIntervalRun"
@@ -1585,7 +1585,7 @@
                                     android:fontFamily="sans-serif-light"
                                     android:textSize="14sp"
                                     android:textAlignment="textEnd"
-                                    android:textColor="@color/gray"/>
+                                    android:textColor="@color/black"/>
                                 <TextView
                                     android:id="@+id/tvIntervalRun"
                                     android:layout_width="wrap_content"
@@ -1596,7 +1596,7 @@
                                     android:text="5min (1:45 / 3:15)"
                                     android:textSize="14sp"
                                     android:textAlignment="textEnd"
-                                    android:textColor="@color/gray"/>
+                                    android:textColor="@color/black"/>
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
@@ -1609,7 +1609,7 @@
                         android:layout_marginLeft="5dp"
                         android:padding="0dp"
                         android:gravity="top|right"
-                        android:background="@color/maroon">
+                        android:background="@color/SteelBlue">
                         <LinearLayout
                             android:id="@+id/lyCurrentDistance"
                             android:layout_width="170dp"
@@ -1619,7 +1619,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginBottom="5dp"
                             android:gravity="top|right"
-                            android:background="@color/gray">
+                            android:background="@color/SteelBlue">
                             <TextView
                                 android:id="@+id/tvDistanceTitle"
                                 android:layout_width="wrap_content"
@@ -1630,7 +1630,7 @@
                                 android:fontFamily="sans-serif-light"
                                 android:textSize="14sp"
                                 android:textAlignment="textEnd"
-                                android:textColor="@color/gray"/>
+                                android:textColor="@color/white"/>
                             <LinearLayout
                                 android:id="@+id/lyDistanceData"
                                 android:layout_width="match_parent"
@@ -1638,7 +1638,7 @@
                                 android:orientation="horizontal"
                                 android:gravity="top|right"
                                 android:layout_marginTop="0dp"
-                                android:background="@color/maroon">
+                                android:background="@color/SkyBlue">
                                 <TextView
                                     android:id="@+id/tvDistanceRun"
                                     android:layout_width="wrap_content"
@@ -1649,7 +1649,7 @@
                                     android:text="0.00"
                                     android:textSize="35sp"
                                     android:textAlignment="textEnd"
-                                    android:textColor="@color/gray"/>
+                                    android:textColor="@color/black"/>
                                 <TextView
                                     android:id="@+id/tvDistanceRunUX"
                                     android:layout_width="wrap_content"
@@ -1660,7 +1660,7 @@
                                     android:text="KM"
                                     android:textSize="20sp"
                                     android:textAlignment="textEnd"
-                                    android:textColor="@color/gray"/>
+                                    android:textColor="@color/black"/>
                             </LinearLayout>
                             <LinearLayout
                                 android:id="@+id/lyChallengeDistancePopUp"
@@ -1668,7 +1668,7 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
                                 android:gravity="top|right"
-                                android:background="@color/maroon">
+                                android:background="@color/SkyBlue">
                                 <TextView
                                     android:id="@+id/tvChallengeDistanceTitle"
                                     android:layout_width="wrap_content"
@@ -1679,14 +1679,14 @@
                                     android:fontFamily="sans-serif-light"
                                     android:textSize="14sp"
                                     android:textAlignment="textEnd"
-                                    android:textColor="@color/gray"/>
+                                    android:textColor="@color/black"/>
                                 <LinearLayout
                                     android:id="@+id/lyChallengeDistanceRun"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal"
                                     android:gravity="top|right"
-                                    android:background="@color/Purple">
+                                    android:background="@color/DarkTurquoise">
                                     <TextView
                                         android:id="@+id/tvChallengeDistanceRun"
                                         android:layout_width="wrap_content"
@@ -1697,7 +1697,7 @@
                                         android:text="15.00"
                                         android:textSize="14sp"
                                         android:textAlignment="textEnd"
-                                        android:textColor="@color/gray"/>
+                                        android:textColor="@color/black"/>
                                     <TextView
                                         android:id="@+id/tvChallengeDistanceRunUX"
                                         android:layout_width="wrap_content"
@@ -1717,7 +1717,7 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
                                 android:gravity="top|right"
-                                android:background="@color/maroon">
+                                android:background="@color/CadetBlue">
                                 <TextView
                                     android:id="@+id/tvUnevennessTitle"
                                     android:layout_width="match_parent"
@@ -1728,7 +1728,7 @@
                                     android:fontFamily="sans-serif-light"
                                     android:textSize="14sp"
                                     android:textAlignment="textEnd"
-                                    android:textColor="@color/Purple"/>
+                                    android:textColor="@color/black"/>
                                 <LinearLayout
                                     android:id="@+id/lyUnevennessDataRun"
                                     android:layout_width="match_parent"
@@ -1755,7 +1755,7 @@
                                             android:drawablePadding="3dp"
                                             android:textSize="14sp"
                                             android:textAlignment="textEnd"
-                                            android:textColor="@color/gray"/>
+                                            android:textColor="@color/black"/>
                                         <TextView
                                             android:id="@+id/tvMaxUnevennessUX"
                                             android:layout_width="wrap_content"
@@ -1766,7 +1766,7 @@
                                             android:text="MSNM"
                                             android:textSize="10sp"
                                             android:textAlignment="textEnd"
-                                            android:textColor="@color/gray"/>
+                                            android:textColor="@color/black"/>
 
                                     </LinearLayout>
                                     <LinearLayout
@@ -1787,7 +1787,7 @@
                                             android:drawablePadding="3dp"
                                             android:textSize="14sp"
                                             android:textAlignment="textEnd"
-                                            android:textColor="@color/gray"/>
+                                            android:textColor="@color/black"/>
                                         <TextView
                                             android:id="@+id/tvMinUnevennessUX"
                                             android:layout_width="wrap_content"
@@ -1798,7 +1798,7 @@
                                             android:text="MSNM"
                                             android:textSize="10sp"
                                             android:textAlignment="textEnd"
-                                            android:textColor="@color/gray"/>
+                                            android:textColor="@color/black"/>
                                     </LinearLayout>
 
                                 </LinearLayout>
@@ -1816,7 +1816,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginBottom="5dp"
                             android:gravity="top|right"
-                            android:background="@color/SkyBlue">
+                            android:background="@color/DarkSlateBlue">
                             <TextView
                                 android:id="@+id/tvAvgSpeedTitle"
                                 android:layout_width="wrap_content"
@@ -1827,7 +1827,7 @@
                                 android:fontFamily="sans-serif-light"
                                 android:textSize="14sp"
                                 android:textAlignment="textEnd"
-                                android:textColor="@color/gray"/>
+                                android:textColor="@color/white"/>
                             <LinearLayout
                                 android:id="@+id/lyAvgSpeedDataRun"
                                 android:layout_width="match_parent"
@@ -1835,7 +1835,7 @@
                                 android:orientation="horizontal"
                                 android:gravity="top|right"
                                 android:layout_marginTop="0dp"
-                                android:background="@color/gray">
+                                android:background="@color/CadetBlue">
                                 <TextView
                                     android:id="@+id/tvAvgSpeedRun"
                                     android:layout_width="wrap_content"
@@ -1846,7 +1846,7 @@
                                     android:text="0.0"
                                     android:textSize="25sp"
                                     android:textAlignment="textEnd"
-                                    android:textColor="@color/gray"/>
+                                    android:textColor="@color/black"/>
                                 <TextView
                                     android:id="@+id/tvAvgSpeedRunUX"
                                     android:layout_width="wrap_content"
@@ -1857,7 +1857,7 @@
                                     android:text="KM/H"
                                     android:textSize="15sp"
                                     android:textAlignment="textEnd"
-                                    android:textColor="@color/gray"/>
+                                    android:textColor="@color/black"/>
                         </LinearLayout>
                             <TextView
                                 android:id="@+id/tvMaxSpeedTitle"
@@ -1869,14 +1869,14 @@
                                 android:fontFamily="sans-serif-light"
                                 android:textSize="14sp"
                                 android:textAlignment="textEnd"
-                                android:textColor="@color/gray"/>
+                                android:textColor="@color/black"/>
                             <LinearLayout
                                 android:id="@+id/lyMaxSpeedRun"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
                                 android:gravity="top|right"
-                                android:background="@color/gray">
+                                android:background="@color/CadetBlue">
                                 <TextView
                                     android:id="@+id/tvMaxSpeedRun"
                                     android:layout_width="wrap_content"
@@ -1887,7 +1887,7 @@
                                     android:text="0.0"
                                     android:textSize="25sp"
                                     android:textAlignment="textEnd"
-                                    android:textColor="@color/gray"/>
+                                    android:textColor="@color/black"/>
                                 <TextView
                                     android:id="@+id/tvMaxSpeedRunUX"
                                     android:layout_width="wrap_content"
@@ -1898,7 +1898,7 @@
                                     android:text="KM/H"
                                     android:textSize="15sp"
                                     android:textAlignment="textEnd"
-                                    android:textColor="@color/gray"/>
+                                    android:textColor="@color/black"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -1917,7 +1917,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         app:cardCornerRadius="75dp"
-                        android:background="@color/white"
+                        android:background="@color/RebeccaPurple"
                         android:layout_marginLeft="65dp"
                         android:layout_marginTop="20dp">
 
@@ -1969,7 +1969,7 @@
                             android:gravity="center"
                             android:text="DISTANCE"
                             android:textAlignment="center"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/black"
                             android:textSize="12sp"
                             android:layout_marginTop="15dp"/>
                         <TextView
@@ -1978,7 +1978,7 @@
                             android:layout_height="wrap_content"
                             android:text="30%"
                             android:textAlignment="center"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/black"
                             android:textSize="35sp"
                             android:layout_marginTop="25dp"/>
                         <TextView
@@ -1988,7 +1988,7 @@
                             android:layout_marginTop="65dp"
                             android:text="35.6/500 km"
                             android:textAlignment="center"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/black"
                             android:textSize="16sp" />
                         <TextView
                             android:id="@+id/tvTotalRunsLevel"
@@ -1996,7 +1996,7 @@
                             android:layout_height="wrap_content"
                             android:text="5/10"
                             android:textAlignment="center"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/black"
                             android:textSize="30sp"
                             android:layout_marginTop="85dp"/>
                         <TextView
@@ -2006,7 +2006,7 @@
                             android:gravity="center"
                             android:text="RUNS"
                             android:textAlignment="center"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/black"
                             android:textSize="12sp"
                             android:layout_marginTop="120dp"/>
 
@@ -2047,7 +2047,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:orientation="horizontal"
-                android:background="@color/orange">
+                android:background="@color/maroon">
                 <TextView
                     android:id="@+id/tvDeleteRun"
                     android:layout_width="wrap_content"
@@ -2057,7 +2057,7 @@
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:text="ELIMINAR"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/black"
                     android:background="@color/white"
                     android:textSize="16sp"
                     android:onClick="deleteRun"
@@ -2068,7 +2068,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:backgroundTint="@color/white"
+                    android:backgroundTint="@color/SkyBlue"
                     android:src="@android:drawable/ic_menu_camera"
                     app:maxImageSize="40dp"
                     android:onClick="takePicture"/>
@@ -2077,7 +2077,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:backgroundTint="@color/white"
+                    android:backgroundTint="@color/SkyBlue"
                     android:src="@android:drawable/ic_menu_share"
                     app:maxImageSize="40dp"
                     android:onClick="shareRun"/>

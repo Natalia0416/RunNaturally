@@ -124,7 +124,7 @@ class LoginActivity : AppCompatActivity() {
 
                     goHome(email, "email")
                 }
-                else Toast.makeText(this, "Error, algo ha ido mal :(", Toast.LENGTH_SHORT).show()
+                else Toast.makeText(this, "Error en el email o contraseña", Toast.LENGTH_SHORT).show()
             }
     }
 

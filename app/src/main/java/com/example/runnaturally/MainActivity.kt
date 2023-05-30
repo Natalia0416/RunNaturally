@@ -84,6 +84,40 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
+    private fun initMetrics(){
+        csbCurrentDistance = findViewById(R.id.csbCurrentDistance)
+        csbChallengeDistance = findViewById(R.id.csbChallengeDistance)
+        csbRecordDistance = findViewById(R.id.csbRecordDistance)
+
+        csbCurrentAvgSpeed = findViewById(R.id.csbCurrentAvgSpeed)
+        csbRecordAvgSpeed = findViewById(R.id.csbRecordAvgSpeed)
+
+        csbCurrentSpeed = findViewById(R.id.csbCurrentSpeed)
+        csbCurrentMaxSpeed = findViewById(R.id.csbCurrentMaxSpeed)
+        csbRecordSpeed = findViewById(R.id.csbRecordSpeed)
+
+        csbCurrentDistance.progress = 0f
+        csbChallengeDistance.progress = 0f
+
+        csbCurrentAvgSpeed.progress = 0f
+
+        csbCurrentSpeed.progress = 0f
+        csbCurrentMaxSpeed.progress = 0f
+
+        tvDistanceRecord = findViewById(R.id.tvDistanceRecord)
+        tvAvgSpeedRecord = findViewById(R.id.tvAvgSpeedRecord)
+        tvMaxSpeedRecord = findViewById(R.id.tvMaxSpeedRecord)
+
+        tvDistanceRecord.text = ""
+        tvAvgSpeedRecord.text = ""
+        tvMaxSpeedRecord.text = ""
+    }
+    private fun initSwitchs(){
+        swIntervalMode = findViewById(R.id.swIntervalMode)
+        swChallenges = findViewById(R.id.swChallenges)
+        swVolumes = findViewById(R.id.swVolumes)
+    }
+
     private fun initToolBar(){
         val toolbar:androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar_main)
         setSupportActionBar(toolbar)
@@ -141,46 +175,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         lySettingsVolumes.translationY = -300f
     }
 
-    private fun initMetrics(){
-        csbCurrentDistance = findViewById(R.id.csbCurrentDistance)
-        csbChallengeDistance = findViewById(R.id.csbChallengeDistance)
-        csbRecordDistance = findViewById(R.id.csbRecordDistance)
-
-        csbCurrentAvgSpeed = findViewById(R.id.csbCurrentAvgSpeed)
-        csbRecordAvgSpeed = findViewById(R.id.csbRecordAvgSpeed)
-
-        csbCurrentSpeed = findViewById(R.id.csbCurrentSpeed)
-        csbCurrentMaxSpeed = findViewById(R.id.csbCurrentMaxSpeed)
-        csbRecordSpeed = findViewById(R.id.csbRecordSpeed)
-
-        csbCurrentDistance.progress = 0f
-        csbChallengeDistance.progress = 0f
-
-        csbCurrentAvgSpeed.progress = 0f
-
-        csbCurrentSpeed.progress = 0f
-        csbCurrentMaxSpeed.progress = 0f
-
-        tvDistanceRecord = findViewById(R.id.tvDistanceRecord)
-        tvAvgSpeedRecord = findViewById(R.id.tvAvgSpeedRecord)
-        tvMaxSpeedRecord = findViewById(R.id.tvMaxSpeedRecord)
-
-        tvDistanceRecord.text = ""
-        tvAvgSpeedRecord.text = ""
-        tvMaxSpeedRecord.text = ""
-
-    }
-
-    private fun initSwitchs(){
-
-        swIntervalMode = findViewById(R.id.swIntervalMode)
-        swChallenges = findViewById(R.id.swChallenges)
-        swVolumes = findViewById(R.id.swVolumes)
-
-    }
-
     private fun initIntervalMode(){
-
         npDurationInterval = findViewById(R.id.npDurationInterval)
         tvRunningTime = findViewById(R.id.tvRunningTime)
         tvWalkingTime = findViewById(R.id.tvWalkingTime)
@@ -204,28 +199,44 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             TIME_RUNNING = ROUND_INTERVAL / 2
         }
 
+        csbRunWalk.max = 300f
+        csbRunWalk.progress = 150f
         csbRunWalk.setOnSeekBarChangeListener(object :
             CircularSeekBar.OnCircularSeekBarChangeListener {
-            override fun onProgressChanged(circularSeekBar: CircularSeekBar,progress: Float,fromUser: Boolean) {
+            override fun onProgressChanged(circularSeekBar: CircularSeekBar?,progress: Float,fromUser: Boolean) {
 
-                var STEPS_UX: Int = 15
-                var set: Int = 0
-                var p = progress.toInt()
+                if (fromUser){
+                    var STEPS_UX: Int = 15
+                    if (ROUND_INTERVAL > 600) STEPS_UX = 60
+                    if (ROUND_INTERVAL > 1800) STEPS_UX = 300
+                    var set: Int = 0
+                    var p = progress.toInt()
 
-                if (p%STEPS_UX != 0){
-                    while (p >= 60) p -= 60
-                    while (p >= STEPS_UX) p -= STEPS_UX
-                    if (STEPS_UX-p > STEPS_UX/2) set = -1 * p
-                    else set = STEPS_UX-p
+                    var limit = 60
+                    if (ROUND_INTERVAL > 1800) limit = 300
 
-                    csbRunWalk.progress = csbRunWalk.progress + set
+                    if (p%STEPS_UX != 0 && progress != csbRunWalk.max){
+                        while (p >= limit) p -= limit
+                        while (p >= STEPS_UX) p -= STEPS_UX
+                        if (STEPS_UX-p > STEPS_UX/2) set = -1 * p
+                        else set = STEPS_UX-p
+
+                        if (csbRunWalk.progress + set > csbRunWalk.max)
+                            csbRunWalk.progress = csbRunWalk.max
+                        else
+                            csbRunWalk.progress = csbRunWalk.progress + set
+                    }
                 }
+
+                tvRunningTime.text = getFormattedStopWatch((csbRunWalk.progress.toInt() *1000).toLong()).subSequence(3,8)
+                tvWalkingTime.text = getFormattedStopWatch(((ROUND_INTERVAL- csbRunWalk.progress.toInt())*1000).toLong()).subSequence(3,8)
+                TIME_RUNNING = getSecFromWatch(tvRunningTime.text.toString())
             }
 
-            override fun onStopTrackingTouch(seekBar: CircularSeekBar) {
+            override fun onStopTrackingTouch(seekBar: CircularSeekBar?) {
             }
 
-            override fun onStartTrackingTouch(seekBar: CircularSeekBar) {
+            override fun onStartTrackingTouch(seekBar: CircularSeekBar?) {
             }
         })
     }
