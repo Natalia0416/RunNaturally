@@ -16,6 +16,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.jotajotavm.wildrunning.Utility.animateViewofFloat
 import com.jotajotavm.wildrunning.Utility.animateViewofInt
+import com.jotajotavm.wildrunning.Utility.getFormattedStopWatch
 import com.jotajotavm.wildrunning.Utility.getSecFromWatch
 import com.jotajotavm.wildrunning.Utility.setHeightLinearLayout
 import me.tankery.lib.circularseekbar.CircularSeekBar
@@ -24,6 +25,22 @@ import me.tankery.lib.circularseekbar.CircularSeekBar
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var drawer: DrawerLayout
+
+    private lateinit var csbChallengeDistance: CircularSeekBar
+    private lateinit var csbCurrentDistance: CircularSeekBar
+    private lateinit var csbRecordDistance: CircularSeekBar
+
+    private lateinit var csbCurrentAvgSpeed: CircularSeekBar
+    private lateinit var csbRecordAvgSpeed: CircularSeekBar
+
+    private lateinit var csbCurrentSpeed: CircularSeekBar
+    private lateinit var csbCurrentMaxSpeed: CircularSeekBar
+    private lateinit var csbRecordSpeed: CircularSeekBar
+
+    private lateinit var tvDistanceRecord: TextView
+    private lateinit var tvAvgSpeedRecord: TextView
+    private lateinit var tvMaxSpeedRecord: TextView
+
     private lateinit var swIntervalMode: Switch
     private lateinit var swChallenges: Switch
     private lateinit var swVolumes: Switch
@@ -38,8 +55,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private lateinit var tvChrono: TextView
 
-
+    private lateinit var npDurationInterval: NumberPicker
+    private lateinit var tvRunningTime: TextView
+    private lateinit var tvWalkingTime: TextView
     private lateinit var csbRunWalk: CircularSeekBar
+
+    private var ROUND_INTERVAL = 300
+    private var TIME_RUNNING: Int = 0
+
+    private lateinit var lyPopupRun: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,7 +110,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         tvUser.text = useremail
     }
 
-    private fun initObjects(){
+    private fun initStopWatch() {
+        tvChrono.text = getString(R.string.init_stop_watch_value)
+    }
+
+    private fun initChrono(){
+        tvChrono = findViewById(R.id.tvChrono)
+        tvChrono.setTextColor(ContextCompat.getColor( this, R.color.white))
+        initStopWatch()
+    }
+
+    private fun hideLayouts(){
         var lyMap = findViewById<LinearLayout>(R.id.lyMap)
         var lyFragmentMap = findViewById<LinearLayout>(R.id.lyFragmentMap)
         val lyIntervalModeSpace = findViewById<LinearLayout>(R.id.lyIntervalModeSpace)
@@ -105,9 +139,155 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         lyIntervalMode.translationY = -300f
         lyChallenges.translationY = -300f
         lySettingsVolumes.translationY = -300f
+    }
+
+    private fun initMetrics(){
+        csbCurrentDistance = findViewById(R.id.csbCurrentDistance)
+        csbChallengeDistance = findViewById(R.id.csbChallengeDistance)
+        csbRecordDistance = findViewById(R.id.csbRecordDistance)
+
+        csbCurrentAvgSpeed = findViewById(R.id.csbCurrentAvgSpeed)
+        csbRecordAvgSpeed = findViewById(R.id.csbRecordAvgSpeed)
+
+        csbCurrentSpeed = findViewById(R.id.csbCurrentSpeed)
+        csbCurrentMaxSpeed = findViewById(R.id.csbCurrentMaxSpeed)
+        csbRecordSpeed = findViewById(R.id.csbRecordSpeed)
+
+        csbCurrentDistance.progress = 0f
+        csbChallengeDistance.progress = 0f
+
+        csbCurrentAvgSpeed.progress = 0f
+
+        csbCurrentSpeed.progress = 0f
+        csbCurrentMaxSpeed.progress = 0f
+
+        tvDistanceRecord = findViewById(R.id.tvDistanceRecord)
+        tvAvgSpeedRecord = findViewById(R.id.tvAvgSpeedRecord)
+        tvMaxSpeedRecord = findViewById(R.id.tvMaxSpeedRecord)
+
+        tvDistanceRecord.text = ""
+        tvAvgSpeedRecord.text = ""
+        tvMaxSpeedRecord.text = ""
+
+    }
+
+    private fun initSwitchs(){
 
         swIntervalMode = findViewById(R.id.swIntervalMode)
         swChallenges = findViewById(R.id.swChallenges)
+        swVolumes = findViewById(R.id.swVolumes)
+
+    }
+
+    private fun initIntervalMode(){
+
+        npDurationInterval = findViewById(R.id.npDurationInterval)
+        tvRunningTime = findViewById(R.id.tvRunningTime)
+        tvWalkingTime = findViewById(R.id.tvWalkingTime)
+        csbRunWalk = findViewById(R.id.csbRunWalk)
+
+        npDurationInterval.minValue = 1
+        npDurationInterval.maxValue = 60
+        npDurationInterval.value = 5
+        npDurationInterval.wrapSelectorWheel = true
+        npDurationInterval.setFormatter(NumberPicker.Formatter { i -> String.format("%02d", i) })
+
+        npDurationInterval.setOnValueChangedListener { picker, oldVal, newVal ->
+            csbRunWalk.max = (newVal*60).toFloat()
+            csbRunWalk.progress = csbRunWalk.max/2
+
+
+            tvRunningTime.text = getFormattedStopWatch(((newVal*60/2)*1000).toLong()).subSequence(3,8)
+            tvWalkingTime.text = tvRunningTime.text
+
+            ROUND_INTERVAL = newVal * 60
+            TIME_RUNNING = ROUND_INTERVAL / 2
+        }
+
+        csbRunWalk.setOnSeekBarChangeListener(object :
+            CircularSeekBar.OnCircularSeekBarChangeListener {
+            override fun onProgressChanged(circularSeekBar: CircularSeekBar,progress: Float,fromUser: Boolean) {
+
+                var STEPS_UX: Int = 15
+                var set: Int = 0
+                var p = progress.toInt()
+
+                if (p%STEPS_UX != 0){
+                    while (p >= 60) p -= 60
+                    while (p >= STEPS_UX) p -= STEPS_UX
+                    if (STEPS_UX-p > STEPS_UX/2) set = -1 * p
+                    else set = STEPS_UX-p
+
+                    csbRunWalk.progress = csbRunWalk.progress + set
+                }
+            }
+
+            override fun onStopTrackingTouch(seekBar: CircularSeekBar) {
+            }
+
+            override fun onStartTrackingTouch(seekBar: CircularSeekBar) {
+            }
+        })
+    }
+
+    private fun initChallengeMode(){
+        npChallengeDistance = findViewById(R.id.npChallengeDistance)
+        npChallengeDurationHH = findViewById(R.id.npChallengeDurationHH)
+        npChallengeDurationMM = findViewById(R.id.npChallengeDurationMM)
+        npChallengeDurationSS = findViewById(R.id.npChallengeDurationSS)
+        npChallengeDistance.minValue = 1
+        npChallengeDistance.maxValue = 300
+        npChallengeDistance.value = 10
+        npChallengeDistance.wrapSelectorWheel = true
+
+
+        npChallengeDistance.setOnValueChangedListener { picker, oldVal, newVal ->
+            challengeDistance = newVal.toFloat()
+            csbChallengeDistance.max = newVal.toFloat()
+            csbChallengeDistance.progress = newVal.toFloat()
+            challengeDuration = 0
+
+            if (csbChallengeDistance.max > csbRecordDistance.max)
+                csbCurrentDistance.max = csbChallengeDistance.max
+        }
+
+        npChallengeDurationHH.minValue = 0
+        npChallengeDurationHH.maxValue = 23
+        npChallengeDurationHH.value = 1
+        npChallengeDurationHH.wrapSelectorWheel = true
+        npChallengeDurationHH.setFormatter(NumberPicker.Formatter { i -> String.format("%02d", i) })
+
+        npChallengeDurationMM.minValue = 0
+        npChallengeDurationMM.maxValue = 59
+        npChallengeDurationMM.value = 0
+        npChallengeDurationMM.wrapSelectorWheel = true
+        npChallengeDurationMM.setFormatter(NumberPicker.Formatter { i -> String.format("%02d", i) })
+
+        npChallengeDurationSS.minValue = 0
+        npChallengeDurationSS.maxValue = 59
+        npChallengeDurationSS.value = 0
+        npChallengeDurationSS.wrapSelectorWheel = true
+        npChallengeDurationSS.setFormatter(NumberPicker.Formatter { i -> String.format("%02d", i) })
+
+        npChallengeDurationHH.setOnValueChangedListener { picker, oldVal, newVal ->
+            getChallengeDuration(newVal, npChallengeDurationMM.value, npChallengeDurationSS.value)
+        }
+        npChallengeDurationMM.setOnValueChangedListener { picker, oldVal, newVal ->
+            getChallengeDuration(npChallengeDurationHH.value, newVal, npChallengeDurationSS.value)
+        }
+        npChallengeDurationSS.setOnValueChangedListener { picker, oldVal, newVal ->
+            getChallengeDuration(npChallengeDurationHH.value, npChallengeDurationMM.value, newVal)
+        }
+
+    }
+
+    private fun initObjects(){
+        initChrono()
+        hideLayouts()
+        initMetrics()
+        initIntervalMode()
+        initChallengeMode()
+        initSwitchs()
     }
 
     fun callSingOut(view:View){
